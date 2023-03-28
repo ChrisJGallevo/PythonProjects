@@ -1,0 +1,41 @@
+import art
+
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+
+def caesar(user_text, positional_change, choice):
+  final_word = ""
+  # If statement if user chooses to decode instead of encode
+  if direction == "decode":
+      positional_change *= -1
+  for character in user_text:
+    if character in alphabet:
+      checking = alphabet.index(character)
+      #Shifted takes the current index and adds the shift number
+    # This will be used to shift the letters around, pulling from the alphabet list
+    # If statement for when you need to shift letters at the end of the alphabet
+      shifted = checking+positional_change
+      #  If user decides to shift number 
+      if shifted > 25:
+      # Takes the remainder of 
+        shifted = shifted % len(alphabet)
+      # The encoded word will add each lett
+      final_word += alphabet[shifted]
+    elif character not in alphabet:
+      final_word += character
+    
+  print(f"The {choice}d text is {final_word}.")
+
+#Import Cipher art
+print(art.logo)
+
+not_finished = True
+while not_finished:
+  direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
+  text = input("Type your message:\n").lower()
+  shift = int(input("Type the shift number:\n"))
+  caesar(user_text= text, positional_change= shift, choice = direction)
+  continue_playing = input("Do you want to continue playing with this code? Type 'yes' to continue or 'no' to quit \n")
+  continue_playing.lower()
+  if continue_playing == 'no':
+    not_finished = False
+    print("You have ended this program. Have a Great Day!")
